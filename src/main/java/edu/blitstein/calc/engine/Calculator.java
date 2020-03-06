@@ -1,4 +1,4 @@
-package edu.blitstein.calc.engine.op.engine;
+package edu.blitstein.calc.engine;
 
 import edu.blitstein.calc.engine.op.UnaryOperation;
 import edu.blitstein.calc.engine.op.UnaryOperationFactory;
