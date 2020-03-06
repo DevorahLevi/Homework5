@@ -1,6 +1,6 @@
 package edu.blitstein.calc;
 
-import edu.blitstein.calc.engine.op.engine.Calculator;
+import edu.blitstein.calc.engine.Calculator;
 import edu.blitstein.calc.exception.DivideByZeroException;
 import edu.blitstein.calc.exception.UnknownOpException;
 
