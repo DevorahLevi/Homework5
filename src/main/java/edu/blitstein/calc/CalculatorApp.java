@@ -29,6 +29,7 @@ public class CalculatorApp {
         boolean done = false;
         try {
             printWriter = new PrintWriter(fileName);
+            printWriter.println("Calculator is on and set to 0.0");
             while (!done) {
                 String opType = (keyboard.next()); //****
                 if (opType.substring(0,1).equalsIgnoreCase("E"))
@@ -52,7 +53,7 @@ public class CalculatorApp {
                         }
                 }
             }
-            //System.out.println("The final result is " + clerk.getResult()); //***How does this line get the updated result? We x update it anywhere
+            //System.out.println("The final result is " + clerk.getResult()); //***How does this line get the updated result from clerk? We x update it anywhere
             printWriter.println("Calculator program ending.");
         } catch (FileNotFoundException e) {
             System.out.println("Error opening the file " + fileName + ": " + e.getMessage());
