@@ -1,7 +1,8 @@
-package edu.blitstein.calc.engine;
+package edu.blitstein.calc.engine.op.engine;
 
-import edu.blitstein.calc.engine.op.BinaryOperation;
-import edu.blitstein.calc.engine.op.BinaryOperationFactory;
+import edu.blitstein.calc.engine.op.UnaryOperation;
+import edu.blitstein.calc.engine.op.UnaryOperationFactory;
+import edu.blitstein.calc.engine.op.UnaryOperationFactory;
 import edu.blitstein.calc.exception.DivideByZeroException;
 import edu.blitstein.calc.exception.UnknownOpException;
 
@@ -32,11 +33,11 @@ public class Calculator {
      * Returns n1 op n2, provided op is one of '+', '', '*',or '/'.
      * Any other value of op throws UnknownOpException.
      */
-    public double evaluate(char opChar, double n1, double n2)
+    public double evaluate(String opType, double n1)
             throws DivideByZeroException, UnknownOpException {
         double answer;
-        BinaryOperation op = BinaryOperationFactory.getOperator(opChar);
-        answer = op.apply(n1, n2);
+        UnaryOperation op = UnaryOperationFactory.getOperator(opType);
+        answer = op.apply(n1);
         return answer;
     }
 }
