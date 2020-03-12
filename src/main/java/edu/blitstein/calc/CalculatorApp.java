@@ -14,36 +14,43 @@ public class CalculatorApp {
 
     //Numbers this close to zero are treated as if equal to zero.
     public static void main(String[] args)
-            throws DivideByZeroException, UnknownOpException {
+            throws DivideByZeroException, UnknownOpException, FileNotFoundException {
         System.out.println("Calculator is on.");
         System.out.print("Format of each line: ");
         System.out.println("operator space number");
         System.out.println("For example: + 3");
         System.out.println("To end, enter the letter e.");
-        Scanner keyboard = new Scanner(System.in);
         Calculator clerk = new Calculator();
         System.out.println("Starting with = " + clerk.getResult());
 
+        Scanner scanner = null;
+        if (args.length > 1)
+        {
+            String inputFileName = "src/main/resources/" + args[0];
+            String outputFileName = "src/main/resources/" + args[1];
+            File inputFile = new File(inputFileName);
+            scanner = new Scanner(inputFile);
+        }
+
+        else
+        {
+            scanner = new Scanner(System.in);
+        }
+
         String outputFileName = "src/main/resources/" + args[0];
         PrintWriter printWriter = null;
-
-        String inputFileName = "src/main/resources/" + args[1];
-        Scanner inputStream = null;
 
         try {
             printWriter = new PrintWriter(outputFileName);
             printWriter.println("Calculator is on and set to 0.0");
 
-            File file = new File(inputFileName);
-            inputStream = new Scanner(file);
-
-            while (inputStream.hasNextLine()) {
-                String opType = (inputStream.next()); //****
+            while (scanner.hasNextLine()) {
+                String opType = (scanner.next()); //****
                 if (opType.substring(0,1).equalsIgnoreCase("E"))
                     break;
                 else {
                     try {
-                        double nextNumber = inputStream.nextDouble();
+                        double nextNumber = scanner.nextDouble();
                         double result = clerk.evaluate(opType, nextNumber);
                         printWriter.println("result " + opType + " " + nextNumber + " = " + result);
                         printWriter.println("updated result = " + result);
@@ -67,8 +74,8 @@ public class CalculatorApp {
             if (printWriter != null) {
                 printWriter.close();
             }
-            if (inputStream != null) {
-                inputStream.close();
+            if (scanner != null) {
+                scanner.close();
             }
         }
     }
